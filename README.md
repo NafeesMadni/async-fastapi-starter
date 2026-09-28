@@ -47,7 +47,6 @@ The API is available at `http://127.0.0.1:8000`; interactive documentation is at
 ## Included endpoints
 
 - `GET /health` — basic health response
-- `GET /user` — example user query
 
 ## Database workflow
 
@@ -77,7 +76,6 @@ uv run pytest
 
 ```text
 app/
-  api/v1/
   core/
   database/
 migrations/
