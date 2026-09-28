@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture(autouse=True)
-def reset_singleton():
+async def reset_singleton():
     """`_session` and `_init_lock` are module-level globals -- reset them
     before and after every test so tests can't leak state into each other.
     """
