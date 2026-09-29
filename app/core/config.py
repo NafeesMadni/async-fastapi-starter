@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     @field_validator("DATABASE_URL", mode="before")
     @classmethod
     def _use_psycopg_driver(cls, value: str) -> str:
+        """Use asyncpg for plain PostgreSQL URLs and preserve other schemes."""
         for scheme in ("postgres://", "postgresql://"):
             if value.startswith(scheme):
                 return value.replace(scheme, "postgresql+asyncpg://", 1)
@@ -22,4 +23,5 @@ class Settings(BaseSettings):
 
 @lru_cache
 def get_settings() -> Settings:
+    """Load and cache application settings from the environment and .env file."""
     return Settings()  # type: ignore

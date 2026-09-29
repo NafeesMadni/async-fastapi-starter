@@ -20,6 +20,7 @@ _init_lock = asyncio.Lock()
 
 
 async def get_sessionmaker() -> async_sessionmaker[AsyncSession]:
+    """Return the shared session factory, locking its lazy initialization."""
     global _session
 
     if _session is not None:

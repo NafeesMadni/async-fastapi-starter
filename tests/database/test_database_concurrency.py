@@ -31,6 +31,7 @@ def reset_singleton():
 # ---------------------------------------------------------------------------
 @pytest.mark.asyncio
 async def test_concurrent_coroutines_create_engine_exactly_once(postgres_url: str):
+    """Verify that concurrent callers share one engine and session factory."""
     fake_settings = SimpleNamespace(DATABASE_URL=postgres_url)
 
     with (
@@ -51,6 +52,7 @@ async def test_concurrent_coroutines_create_engine_exactly_once(postgres_url: st
 
 @pytest.mark.asyncio
 async def test_concurrent_coroutines_return_a_usable_sessionmaker(postgres_url: str):
+    """Verify that the shared factory can create an asynchronous session."""
     fake_settings = SimpleNamespace(DATABASE_URL=postgres_url)
 
     with patch("app.database.db.get_settings", return_value=fake_settings):
@@ -67,6 +69,7 @@ async def test_concurrent_coroutines_return_a_usable_sessionmaker(postgres_url: 
 
 @pytest.mark.asyncio
 async def test_get_sessionmaker_talks_to_real_postgres(sessionmaker: AsyncSession):
+    """Verify that a session from the factory can query a real PostgreSQL server."""
     import sqlalchemy
 
     async with sessionmaker() as session:  # pyright: ignore[reportCallIssue]

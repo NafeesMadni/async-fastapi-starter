@@ -10,7 +10,7 @@ from app.database.db import get_sessionmaker
 
 
 async def get_session() -> AsyncGenerator[AsyncSession]:
-
+    """Yield a database session and close it when the dependency exits."""
     LocalSession = await get_sessionmaker()
 
     async with LocalSession() as _session:
