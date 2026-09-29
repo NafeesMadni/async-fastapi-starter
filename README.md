@@ -21,8 +21,8 @@ A small, async-first FastAPI starter with SQLAlchemy 2.x, Alembic, and PostgreSQ
 ## Quick start
 
 ```bash
-git clone <your-repository-url>
-cd <repository-directory>
+git clone https://github.com/NafeesMadni/async-fastapi-starter.git
+cd async-fastapi-starter
 uv sync
 cp `.env.example` .env
 ```
