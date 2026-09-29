@@ -21,10 +21,10 @@ A small, async-first FastAPI starter with SQLAlchemy 2.x, Alembic, and PostgreSQ
 ## Quick start
 
 ```bash
-git clone <your-repository-url>
-cd <repository-directory>
+git clone https://github.com/NafeesMadni/async-fastapi-starter.git
+cd async-fastapi-starter
 uv sync
-cp `.env.example` .env
+cp .env.example .env
 ```
 
 Set `DATABASE_URL` in `.env`:
@@ -47,7 +47,6 @@ The API is available at `http://127.0.0.1:8000`; interactive documentation is at
 ## Included endpoints
 
 - `GET /health` — basic health response
-- `GET /user` — example user query
 
 ## Database workflow
 
@@ -77,7 +76,6 @@ uv run pytest
 
 ```text
 app/
-  api/v1/
   core/
   database/
 migrations/
