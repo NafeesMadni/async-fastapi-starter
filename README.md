@@ -24,7 +24,7 @@ A small, async-first FastAPI starter with SQLAlchemy 2.x, Alembic, and PostgreSQ
 git clone https://github.com/NafeesMadni/async-fastapi-starter.git
 cd async-fastapi-starter
 uv sync
-cp `.env.example` .env
+cp .env.example .env
 ```
 
 Set `DATABASE_URL` in `.env`:
