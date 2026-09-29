@@ -30,10 +30,15 @@ def reset_singleton():
 # in FastAPI) racing to initialize the sessionmaker.
 # ---------------------------------------------------------------------------
 @pytest.mark.asyncio
-async def test_concurrent_coroutines_create_engine_exactly_once():
-    with patch(
-        "app.database.db.create_async_engine", return_value="fake-engine"
-    ) as mock_create:
+async def test_concurrent_coroutines_create_engine_exactly_once(postgres_url: str):
+    fake_settings = SimpleNamespace(DATABASE_URL=postgres_url)
+
+    with (
+        patch("app.database.db.get_settings", return_value=fake_settings),
+        patch(
+            "app.database.db.create_async_engine", return_value="fake-engine"
+        ) as mock_create,
+    ):
         results = await asyncio.gather(
             *[db.get_sessionmaker() for _ in range(50)],
         )
